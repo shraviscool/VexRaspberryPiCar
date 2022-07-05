@@ -1,26 +1,32 @@
+#The RPi.GPIO controls the GPIO interface on the Raspberry Pi and the time module represents time as code
+
 import RPi.GPIO as GPIO
 import time
 GPIO.setwarnings(False)
 
-# Control M2 motor
+#Testing the first motor
 L_IN1 = 20
 L_IN2 = 21
 L_PWM1 = 0
-# Control M1 motor
+
+#Testing the second motor
 L_IN3 = 22
 L_IN4 = 23
 L_PWM2 = 1
-# Control M3 motor
+
+#Testing the third motor
 R_IN1 = 24
 R_IN2 = 25
 R_PWM1 = 12
-# Control M4 motor
+
+#Testing the fourth motor
 R_IN3 = 26
 R_IN4 = 27
 R_PWM2 = 13
 
-GPIO.setmode(GPIO.BCM)  # use BCM numbers
-#set the MOTOR Driver Pin OUTPUT mode
+GPIO.setmode(GPIO.BCM)  
+
+#Setting the MOTOR Driver Pin OUTPUT mode
 GPIO.setup(L_IN1,GPIO.OUT)
 GPIO.setup(L_IN2,GPIO.OUT)
 GPIO.setup(L_PWM1,GPIO.OUT)
@@ -49,13 +55,13 @@ GPIO.output(R_IN3,GPIO.LOW)
 GPIO.output(R_IN4,GPIO.LOW)
 
 
-#set pwm frequence to 1000hz
+#Set the pwm frequencey to 1000hz
 pwm_R1 = GPIO.PWM(R_PWM1,100)
 pwm_R2 = GPIO.PWM(R_PWM2,100)
 pwm_L1 = GPIO.PWM(L_PWM1,100)
 pwm_L2 = GPIO.PWM(L_PWM2,100)
 
-#set inital duty cycle to 0
+#Set the inital duty cycle to 0
 pwm_R1.start(0)
 pwm_L1.start(0)
 pwm_R2.start(0)
@@ -75,7 +81,7 @@ while True:
     GPIO.output(R_IN4,GPIO.HIGH)
     pwm_R2.ChangeDutyCycle(50)
     
-#stop pwm
+#Stop pwm
 pwm_R1.stop()
 pwm_L1.stop()
 pwm_R2.stop()
